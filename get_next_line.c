@@ -6,7 +6,7 @@
 /*   By: alen <alen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:46:00 by alen              #+#    #+#             */
-/*   Updated: 2025/02/07 18:30:16 by alen             ###   ########.fr       */
+/*   Updated: 2025/02/07 18:33:18 by alen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,8 @@ char	*new_get_next_line(char *line)
 	len = ft_strlen(line);
 	while (line[i] && line[i] != '\n')
 		++i;
-	if (i == len || (line[i] == '\n' && line[i + 1] == '\0'))
-	{
-		free(line);
-		return (NULL);
-	}
 	str = (char *)malloc(len - i);
-	if (!str)
+	if (i == len || (line[i] == '\n' && line[i + 1] == '\0') || !str)
 	{
 		free(line);
 		return (NULL);
@@ -94,7 +89,10 @@ char	*new_get_next_line(char *line)
 	len = i + 1;
 	i = 0;
 	while (line[len + i])
-		str[i++] = line[len + i];
+	{
+		str[i] = line[len + i];
+		++i;
+	}
 	str[i] = '\0';
 	free(line);
 	return (str);
