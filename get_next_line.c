@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alen <alen@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 17:46:00 by alen              #+#    #+#             */
-/*   Updated: 2025/02/07 18:33:18 by alen             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-static	char	*get_line(int fd, char *line, int read_size)
+static	char	*get_line(int fd, char *line)
 {
 	char	*buf;
+	int		read_size;
 
 	buf = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buf)
@@ -78,17 +67,21 @@ char	*new_get_next_line(char *line)
 
 	i = 0;
 	len = ft_strlen(line);
-	while (line[i] && line[i] != '\n')
+		while (line[i] && line[i] != '\n')
 		++i;
+	if (i == len || (line[i] == '\n' && line[i + 1] == '\0'))
+	{
+		free(line);
+		return (NULL);
+	}
 	str = (char *)malloc(len - i);
-	if (i == len || (line[i] == '\n' && line[i + 1] == '\0') || !str)
+	if (!str)
 	{
 		free(line);
 		return (NULL);
 	}
 	len = i + 1;
-	i = 0;
-	while (line[len + i])
+	i = 0;	while (line[len + i])
 	{
 		str[i] = line[len + i];
 		++i;
@@ -101,13 +94,11 @@ char	*new_get_next_line(char *line)
 char	*get_next_line(int fd)
 {
 	char		*clean_line;
-	int			read_size;
 	static char	*line;
 
-	read_size = 1;
 	if (fd < 0 || BUFFER_SIZE == 0)
 		return (NULL);
-	line = get_line(fd, line, read_size);
+	line = get_line(fd, line);
 	if (!line)
 		return (NULL);
 	clean_line = ft_clean_line(line);
