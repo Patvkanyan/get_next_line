@@ -6,7 +6,7 @@
 /*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:02:06 by alen              #+#    #+#             */
-/*   Updated: 2025/02/07 18:36:19 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/02/07 20:08:35 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	str = (char *)malloc(len);
 	if (!str)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[++i])
 		str[i] = s1[i];
-		++i;
-	}
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 20:07:05 by apatvaka          #+#    #+#             */
+/*   Updated: 2025/02/07 20:13:34 by apatvaka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static	char	*get_line(int fd, char *line)
@@ -18,11 +30,7 @@ static	char	*get_line(int fd, char *line)
 			return (line);
 		}
 		if (read_size < 0)
-		{
-			free(buf);
-			free(line);
-			return (NULL);
-		}
+			return (free(buf), free(line), NULL);
 		buf[read_size] = '\0';
 		line = ft_strjoin(line, buf);
 	}
@@ -67,28 +75,22 @@ char	*new_get_next_line(char *line)
 
 	i = 0;
 	len = ft_strlen(line);
-		while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n')
 		++i;
 	if (i == len || (line[i] == '\n' && line[i + 1] == '\0'))
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
 	str = (char *)malloc(len - i);
 	if (!str)
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
 	len = i + 1;
-	i = 0;	while (line[len + i])
+	i = 0;
+	while (line[len + i])
 	{
 		str[i] = line[len + i];
 		++i;
 	}
 	str[i] = '\0';
-	free(line);
-	return (str);
+	return (free(line), str);
 }
 
 char	*get_next_line(int fd)
