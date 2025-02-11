@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alen <alen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:02:06 by alen              #+#    #+#             */
-/*   Updated: 2025/02/11 16:43:46 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:40:56 by alen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	len;
 	size_t	i;
 	size_t	j;
 	char	*str;
@@ -40,8 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	i = -1;
 	j = 0;
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(len);
+	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[++i])
