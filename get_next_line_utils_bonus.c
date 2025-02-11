@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alen <alen@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apatvaka <apatvaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:02:06 by alen              #+#    #+#             */
-/*   Updated: 2025/02/08 14:16:59 by alen             ###   ########.fr       */
+/*   Updated: 2025/02/11 16:43:46 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
+		if (!s1)
+			return (NULL);
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)

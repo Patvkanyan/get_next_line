@@ -6,7 +6,7 @@
 /*   By: alen <alen@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:45:42 by alen              #+#    #+#             */
-/*   Updated: 2025/02/08 15:11:39 by apatvaka         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:44:24 by apatvaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
-# include <fcntl.h>
+# include <limits.h>
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
